@@ -1,79 +1,226 @@
 # 🎓 EduInfo - Student Management System
 
-A modern Student Management System built using **Python, Flask, SQLite, HTML, CSS, and JavaScript**.
+A modern **Student Management System** built using **Python, Flask, SQLite, HTML, CSS, and JavaScript**. The project provides separate portals for **Students, Teachers, and Administrators** to efficiently manage academic records, attendance, and marks.
+
+---
 
 ## 🌐 Live Demo
 
-https://eduinfo-student-management-system.onrender.com
+🔗 **https://eduinfo-student-management-system.onrender.com**
 
 ---
 
-## ✨ Features
+# ✨ Features
 
-- 👨‍🎓 Student Registration & Login
-- 👨‍🏫 Teacher Login & Dashboard
-- 👨‍💼 Admin Login & Dashboard
-- 📚 Student Profile Management
-- ✅ Attendance Management
-- 📝 Marks Management
-- 🔐 Secure Password Hashing
-- 💾 SQLite Database
-- 📱 Responsive Interface
+### 👨‍🎓 Student Module
+- Student Registration
+- Secure Login
+- Personal Dashboard
+- View Attendance
+- View Marks
+- Profile Management
 
----
+### 👨‍🏫 Teacher Module
+- Teacher Login
+- Dashboard
+- View Students
+- Add Students
+- Mark Attendance
+- Upload Student Marks
 
-## 🛠 Tech Stack
+### 👨‍💼 Admin Module
+- Admin Login
+- Dashboard
+- Manage Students
+- Manage Teachers
+- View Attendance Records
+- View Marks Records
 
-- Python
-- Flask
-- SQLite
-- HTML5
-- CSS3
-- JavaScript
-- Git
-- GitHub
-- Render
-
----
-
-## 🚀 Installation
-
-```bash
-git clone https://github.com/techy4745/EduInfo-Student-Management-System.git
-
-cd EduInfo-Student-Management-System
-
-pip install -r requirements.txt
-
-python app.py
-```
+### 🔒 Security
+- Password Hashing
+- Session Management
+- Secure Authentication
 
 ---
 
-## 📂 Project Structure
+# 🛠️ Technologies Used
+
+| Technology | Purpose |
+|------------|---------|
+| Python | Backend |
+| Flask | Web Framework |
+| SQLite | Database |
+| HTML5 | Structure |
+| CSS3 | Styling |
+| JavaScript | Frontend Interaction |
+| Git | Version Control |
+| GitHub | Repository Hosting |
+| Render | Deployment |
+
+---
+
+# 📸 Project Screenshots
+
+<table>
+
+<tr>
+<td align="center"><b>🏠 Home Page</b></td>
+<td align="center"><b>👨‍🎓 Student Login</b></td>
+</tr>
+
+<tr>
+<td>
+<img src="screenshots/home.png" width="500">
+</td>
+
+<td>
+<img src="screenshots/student-login.png" width="500">
+</td>
+</tr>
+
+<tr>
+<td align="center"><b>👨‍🎓 Student Dashboard</b></td>
+<td align="center"><b>👨‍🏫 Teacher Dashboard</b></td>
+</tr>
+
+<tr>
+<td>
+<img src="screenshots/student-dashboard.png" width="500">
+</td>
+
+<td>
+<img src="screenshots/teacher-dashboard.png" width="500">
+</td>
+</tr>
+
+<tr>
+<td align="center"><b>👨‍💼 Admin Dashboard</b></td>
+<td align="center"><b>✅ Attendance Management</b></td>
+</tr>
+
+<tr>
+<td>
+<img src="screenshots/admin-dashboard.png" width="500">
+</td>
+
+<td>
+<img src="screenshots/attendance.png" width="500">
+</td>
+</tr>
+
+<tr>
+<td colspan="2" align="center"><b>📝 Marks Management</b></td>
+</tr>
+
+<tr>
+<td colspan="2" align="center">
+<img src="screenshots/marks.png" width="700">
+</td>
+</tr>
+
+</table>
+
+---
+
+# 📂 Project Structure
 
 ```
 EduInfo-Student-Management-System
 │
+├── screenshots/
+├── static/
+├── templates/
+├── tests/
 ├── app.py
 ├── requirements.txt
 ├── README.md
-├── static/
-├── templates/
-└── student_management.db
+├── .gitignore
+└── eduinfo.db
 ```
 
 ---
 
-## 🌍 Live Website
+# 🚀 Installation
 
-https://eduinfo-student-management-system.onrender.com
+Clone the repository
+
+```bash
+git clone https://github.com/techy4745/EduInfo-Student-Management-System.git
+```
+
+Move into the project directory
+
+```bash
+cd EduInfo-Student-Management-System
+```
+
+Create a virtual environment
+
+```bash
+python -m venv venv
+```
+
+Activate the virtual environment
+
+### Windows
+
+```bash
+venv\Scripts\activate
+```
+
+### Linux / macOS
+
+```bash
+source venv/bin/activate
+```
+
+Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+Run the application
+
+```bash
+python app.py
+```
+
+Open in your browser
+
+```
+http://127.0.0.1:5000
+```
 
 ---
 
-## 👨‍💻 Author
+# 📌 Future Improvements
+
+- Edit/Delete Students
+- Search Students
+- Export Attendance Reports
+- Export Marks Reports
+- Email Notifications
+- PostgreSQL Database Support
+- Role-Based Permissions
+- Responsive Mobile UI
+
+---
+
+# 👨‍💻 Author
 
 **Himanshu verma**
 
-GitHub:
+GitHub Profile
+
 https://github.com/techy4745
+
+---
+
+# ⭐ Support
+
+If you found this project helpful, consider giving it a ⭐ on GitHub.
+
+---
+
+## Thank You ❤️
