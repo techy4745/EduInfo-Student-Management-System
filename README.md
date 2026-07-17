@@ -1,6 +1,6 @@
 # 🎓 EduInfo - Student Management System
 
-A modern **Student Management System** built using **Python, Flask, SQLite, HTML, CSS, and JavaScript**. The project provides separate portals for **Students, Teachers, and Administrators** to efficiently manage academic records, attendance, and marks.
+A modern **Student Management System** built using **Python, Flask, SQLite, HTML, CSS, and JavaScript**. The project provides separate portals for **Students, Teachers, and Administrators** to efficiently manage academic records, attendence, and marks.
 
 ---
 
@@ -16,7 +16,7 @@ A modern **Student Management System** built using **Python, Flask, SQLite, HTML
 - Student Registration
 - Secure Login
 - Personal Dashboard
-- View Attendance
+- View Attendence
 - View Marks
 - Profile Management
 
@@ -25,7 +25,7 @@ A modern **Student Management System** built using **Python, Flask, SQLite, HTML
 - Dashboard
 - View Students
 - Add Students
-- Mark Attendance
+- Mark Attendence
 - Upload Student Marks
 
 ### 👨‍💼 Admin Module
@@ -33,7 +33,7 @@ A modern **Student Management System** built using **Python, Flask, SQLite, HTML
 - Dashboard
 - Manage Students
 - Manage Teachers
-- View Attendance Records
+- View Attendence Records
 - View Marks Records
 
 ### 🔒 Security
@@ -95,7 +95,7 @@ A modern **Student Management System** built using **Python, Flask, SQLite, HTML
 
 <tr>
 <td align="center"><b>👨‍💼 Admin Dashboard</b></td>
-<td align="center"><b>✅ Attendance Management</b></td>
+<td align="center"><b>✅ Attendence Management</b></td>
 </tr>
 
 <tr>
@@ -104,7 +104,7 @@ A modern **Student Management System** built using **Python, Flask, SQLite, HTML
 </td>
 
 <td>
-<img src="screenshots/attendance.png" width="500">
+<img src="screenshots/attendence.png" width="500">
 </td>
 </tr>
 
@@ -198,7 +198,7 @@ http://127.0.0.1:5000
 
 - Edit/Delete Students
 - Search Students
-- Export Attendance Reports
+- Export Attendence Reports
 - Export Marks Reports
 - Email Notifications
 - PostgreSQL Database Support
