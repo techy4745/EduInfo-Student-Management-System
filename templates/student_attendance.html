@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Attendance | EduInfo</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f7fb;
+            color: #111827;
+        }
+
+        .navbar {
+            height: 70px;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            padding: 10px 18px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+            color: white !important;
+        }
+
+        .attendance-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 50px auto;
+        }
+
+        .page-heading {
+            margin-bottom: 30px;
+        }
+
+        .page-heading h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #64748b;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+        }
+
+        .summary-card p {
+            color: #64748b;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .summary-card h2 {
+            font-size: 32px;
+            color: #0284c7;
+        }
+
+        .attendance-box {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+        }
+
+        .attendance-box h2 {
+            margin-bottom: 25px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f1f5f9;
+            color: #374151;
+            text-align: left;
+            padding: 15px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 7px 13px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .present {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .absent {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .no-records {
+            text-align: center;
+            color: #64748b;
+            padding: 35px;
+        }
+
+        @media (max-width: 750px) {
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .attendance-box {
+                padding: 20px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Edu<span>Info</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/student/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/student/logout" class="logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+    <main class="attendance-container">
+
+        <div class="page-heading">
+
+            <h1>My Attendance</h1>
+
+            <p>
+                View your attendance records and overall attendance percentage.
+            </p>
+
+        </div>
+
+        <div class="summary-cards">
+
+            <div class="summary-card">
+
+                <p>Total Classes</p>
+
+                <h2>
+                    {{ total_classes }}
+                </h2>
+
+            </div>
+
+            <div class="summary-card">
+
+                <p>Classes Present</p>
+
+                <h2>
+                    {{ present_classes }}
+                </h2>
+
+            </div>
+
+            <div class="summary-card">
+
+                <p>Attendance Percentage</p>
+
+                <h2>
+                    {{ attendance_percentage }}%
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="attendance-box">
+
+            <h2>Attendance Records</h2>
+
+            <div class="table-wrapper">
+
+                {% if attendance_records %}
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Date</th>
+                                <th>Subject</th>
+                                <th>Status</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for record in attendance_records %}
+
+                                <tr>
+
+                                    <td>
+                                        {{ record["date"] }}
+                                    </td>
+
+                                    <td>
+                                        {{ record["subject"] }}
+                                    </td>
+
+                                    <td>
+
+                                        {% if record["status"] == "Present" %}
+
+                                            <span class="status present">
+                                                Present
+                                            </span>
+
+                                        {% else %}
+
+                                            <span class="status absent">
+                                                Absent
+                                            </span>
+
+                                        {% endif %}
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                {% else %}
+
+                    <div class="no-records">
+                        No attendance records available yet.
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | EduInfo</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f7fb;
+            color: #111827;
+        }
+
+        .navbar {
+            height: 70px;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #f59e0b;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .admin-name {
+            color: #e2e8f0;
+            font-size: 15px;
+        }
+
+        .logout-btn {
+            color: white;
+            text-decoration: none;
+            background: #ef4444;
+            padding: 10px 18px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+
+        .dashboard-container {
+            width: 86%;
+            max-width: 1200px;
+            margin: 50px auto;
+        }
+
+        .welcome-section {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 35px;
+            border-radius: 14px;
+            margin-bottom: 35px;
+            box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2);
+        }
+
+        .welcome-section h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        .welcome-section p {
+            color: #fef3c7;
+            font-size: 17px;
+        }
+
+        .dashboard-title {
+            font-size: 25px;
+            margin-bottom: 22px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-card h3 {
+            color: #64748b;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .stat-card p {
+            font-size: 32px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-icon {
+            width: 58px;
+            height: 58px;
+            background: #fef3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 27px;
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 21px;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 22px;
+        }
+
+        .card-link {
+            display: inline-block;
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .card-link:hover {
+            color: #d97706;
+        }
+
+        @media (max-width: 750px) {
+            .stats-grid,
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-container {
+                width: 92%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">Edu<span>Info</span></div>
+        <div class="nav-right">
+            <span class="admin-name">{{ admin["name"] }}</span>
+            <a href="/admin/logout" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <main class="dashboard-container">
+        <section class="welcome-section">
+            <h1>Welcome, {{ admin["name"] }} 👋</h1>
+            <p>Manage students, teachers, attendance and marks from your admin control panel.</p>
+        </section>
+
+        <h2 class="dashboard-title">Admin Dashboard</h2>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3>Total Students</h3>
+                <p>{{ total_students }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Total Teachers</h3>
+                <p>{{ total_teachers }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Attendance Records</h3>
+                <p>{{ total_attendance }}</p>
+            </div>
+            <div class="stat-card">
+                <h3>Marks Records</h3>
+                <p>{{ total_marks }}</p>
+            </div>
+        </div>
+
+        <div class="dashboard-cards">
+            <div class="card">
+                <div class="card-icon">👥</div>
+                <h2>Manage Students</h2>
+                <p>View all students and remove student accounts when needed.</p>
+                <a href="/admin/students" class="card-link">Manage Students →</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">👨‍🏫</div>
+                <h2>Manage Teachers</h2>
+                <p>Add new teachers or remove existing teacher accounts.</p>
+                <a href="/admin/teachers" class="card-link">Manage Teachers →</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📅</div>
+                <h2>View Attendance</h2>
+                <p>Review all attendance records submitted by students.</p>
+                <a href="/admin/attendance" class="card-link">View Attendance →</a>
+            </div>
+
+            <div class="card">
+                <div class="card-icon">📝</div>
+                <h2>View Marks</h2>
+                <p>Inspect all marks records uploaded for students.</p>
+                <a href="/admin/marks" class="card-link">View Marks →</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

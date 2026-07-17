@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduInfo | Student Management System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .navbar {
+            height: 70px;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8%;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 16px;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .hero {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            color: #111827;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #0284c7;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .primary-btn {
+            background: #0284c7;
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: #0369a1;
+            transform: translateY(-3px);
+        }
+
+        .secondary-btn {
+            background: white;
+            color: #0284c7;
+            border: 2px solid #0284c7;
+        }
+
+        .secondary-btn:hover {
+            background: #0284c7;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+
+            .hero p {
+                font-size: 17px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Edu<span>Info</span></div>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/student/login">Student</a>
+            <a href="/teacher/login">Teacher</a>
+            <a href="/admin/login">Admin</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to <span>EduInfo</span></h1>
+
+            <p>
+                A smart Student Management System designed to manage
+                students, teachers, attendance and academic records
+                efficiently.
+            </p>
+
+            <div class="buttons">
+                <a href="/student/register" class="btn primary-btn">Student Portal</a>
+                <a href="/teacher/login" class="btn secondary-btn">Teacher Portal</a>
+                <a href="/admin/login" class="btn secondary-btn">Admin Portal</a>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

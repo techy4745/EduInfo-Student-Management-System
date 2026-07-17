@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Profile | EduInfo</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f7fb;
+            color: #111827;
+        }
+
+        .navbar {
+            height: 70px;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 15px;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            padding: 10px 18px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+            color: white !important;
+        }
+
+        .profile-container {
+            width: 90%;
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        .page-heading {
+            margin-bottom: 25px;
+        }
+
+        .page-heading h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #64748b;
+        }
+
+        .profile-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .profile-header {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: white;
+            padding: 35px;
+            text-align: center;
+        }
+
+        .profile-icon {
+            width: 90px;
+            height: 90px;
+            background: white;
+            color: #0284c7;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 18px;
+            font-size: 42px;
+        }
+
+        .profile-header h2 {
+            font-size: 28px;
+            margin-bottom: 7px;
+        }
+
+        .profile-header p {
+            color: #e0f2fe;
+        }
+
+        .profile-details {
+            padding: 35px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #64748b;
+            font-weight: bold;
+        }
+
+        .detail-value {
+            color: #111827;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        .student-id {
+            color: #0284c7;
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .nav-links a:first-child {
+                display: none;
+            }
+
+            .profile-details {
+                padding: 25px;
+            }
+
+            .detail-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .detail-value {
+                text-align: left;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Edu<span>Info</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/student/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/student/logout" class="logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+    <main class="profile-container">
+
+        <div class="page-heading">
+
+            <h1>Student Profile</h1>
+
+            <p>
+                View your personal and academic information.
+            </p>
+
+        </div>
+
+        <div class="profile-card">
+
+            <div class="profile-header">
+
+                <div class="profile-icon">
+                    👤
+                </div>
+
+                <h2>
+                    {{ student["name"] }}
+                </h2>
+
+                <p>
+                    {{ student["course"] }}
+                </p>
+
+            </div>
+
+            <div class="profile-details">
+
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        Student ID
+                    </span>
+
+                    <span class="detail-value student-id">
+                        EDU{{ "%04d"|format(student["id"]) }}
+                    </span>
+
+                </div>
+
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        Full Name
+                    </span>
+
+                    <span class="detail-value">
+                        {{ student["name"] }}
+                    </span>
+
+                </div>
+
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        Email Address
+                    </span>
+
+                    <span class="detail-value">
+                        {{ student["email"] }}
+                    </span>
+
+                </div>
+
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        Enrolled Course
+                    </span>
+
+                    <span class="detail-value">
+                        {{ student["course"] }}
+                    </span>
+
+                </div>
+
+                <div class="detail-row">
+
+                    <span class="detail-label">
+                        Account Status
+                    </span>
+
+                    <span class="detail-value">
+                        Active
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

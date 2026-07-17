@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Records | EduInfo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { min-height: 100vh; background: #f4f7fb; color: #111827; }
+        .navbar { height: 70px; background: #111827; color: white; display: flex; align-items: center; justify-content: space-between; padding: 0 7%; }
+        .logo { font-size: 26px; font-weight: bold; }
+        .logo span { color: #f59e0b; }
+        .nav-right { display: flex; align-items: center; gap: 25px; }
+        .nav-right a { color: white; text-decoration: none; font-size: 16px; }
+        .nav-right a:hover { color: #f59e0b; }
+        .logout-btn { background: #ef4444; padding: 10px 18px; border-radius: 7px; font-weight: bold; }
+        .logout-btn:hover { background: #dc2626; color: white !important; }
+        .container { width: 86%; max-width: 1200px; margin: 50px auto; }
+        .page-header { margin-bottom: 30px; }
+        .page-header h1 { font-size: 32px; margin-bottom: 8px; }
+        .page-header p { color: #64748b; font-size: 16px; }
+        .summary-card { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 25px 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 10px 25px rgba(245, 158, 11, 0.2); }
+        .summary-card p { color: #fef3c7; margin-bottom: 8px; }
+        .summary-card h2 { font-size: 35px; }
+        .table-box { background: white; border-radius: 12px; padding: 25px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08); overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        thead { background: #f1f5f9; }
+        th, td { padding: 16px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        th { color: #475569; font-size: 14px; text-transform: uppercase; }
+        td { color: #1f2937; }
+        .empty-message { text-align: center; padding: 60px 20px; color: #64748b; }
+        @media (max-width: 700px) { .container { width: 92%; } .navbar { padding: 0 5%; } th, td { padding: 13px; min-width: 120px; } }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Edu<span>Info</span></div>
+        <div class="nav-right">
+            <a href="/admin/dashboard">Dashboard</a>
+            <a href="/admin/logout" class="logout-btn">Logout</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <h1>Marks Records</h1>
+            <p>Inspect all marks uploaded for students.</p>
+        </div>
+
+        <div class="summary-card">
+            <p>Total Marks Records</p>
+            <h2>{{ total_records }}</h2>
+        </div>
+
+        <div class="table-box">
+            {% if marks_records %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Student</th>
+                        <th>Subject</th>
+                        <th>Marks Obtained</th>
+                        <th>Max Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in marks_records %}
+                    <tr>
+                        <td>{{ record["id"] }}</td>
+                        <td>{{ record["student_name"] }}</td>
+                        <td>{{ record["subject"] }}</td>
+                        <td>{{ record["marks_obtained"] }}</td>
+                        <td>{{ record["max_marks"] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="empty-message">No marks records available.</div>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>

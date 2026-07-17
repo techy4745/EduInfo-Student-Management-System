@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Marks | EduInfo</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #f4f7fb;
+            color: #111827;
+        }
+
+        .navbar {
+            height: 70px;
+            background: #111827;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #38bdf8;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .logout-btn {
+            background: #ef4444;
+            padding: 10px 18px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .logout-btn:hover {
+            background: #dc2626;
+            color: white !important;
+        }
+
+        .marks-container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 50px auto;
+        }
+
+        .page-heading {
+            margin-bottom: 30px;
+        }
+
+        .page-heading h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .page-heading p {
+            color: #64748b;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+        }
+
+        .summary-card p {
+            color: #64748b;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        .summary-card h2 {
+            font-size: 32px;
+            color: #0284c7;
+        }
+
+        .marks-box {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+        }
+
+        .marks-box h2 {
+            margin-bottom: 25px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #f1f5f9;
+            color: #374151;
+            text-align: left;
+            padding: 15px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .score {
+            font-weight: bold;
+            color: #0284c7;
+        }
+
+        .grade {
+            display: inline-block;
+            padding: 7px 14px;
+            border-radius: 20px;
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .no-records {
+            text-align: center;
+            color: #64748b;
+            padding: 35px;
+        }
+
+        @media (max-width: 750px) {
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 0 5%;
+            }
+
+            .marks-box {
+                padding: 20px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Edu<span>Info</span>
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/student/dashboard">
+                Dashboard
+            </a>
+
+            <a href="/student/logout" class="logout-btn">
+                Logout
+            </a>
+
+        </div>
+
+    </nav>
+
+    <main class="marks-container">
+
+        <div class="page-heading">
+
+            <h1>My Marks</h1>
+
+            <p>
+                View your subject-wise marks and academic performance.
+            </p>
+
+        </div>
+
+        <div class="summary-cards">
+
+            <div class="summary-card">
+
+                <p>Total Subjects</p>
+
+                <h2>
+                    {{ total_subjects }}
+                </h2>
+
+            </div>
+
+            <div class="summary-card">
+
+                <p>Total Marks Obtained</p>
+
+                <h2>
+                    {{ total_obtained }}
+                </h2>
+
+            </div>
+
+            <div class="summary-card">
+
+                <p>Overall Percentage</p>
+
+                <h2>
+                    {{ overall_percentage }}%
+                </h2>
+
+            </div>
+
+        </div>
+
+        <div class="marks-box">
+
+            <h2>Academic Records</h2>
+
+            <div class="table-wrapper">
+
+                {% if marks_records %}
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Subject</th>
+                                <th>Marks Obtained</th>
+                                <th>Maximum Marks</th>
+                                <th>Percentage</th>
+                                <th>Grade</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for record in marks_records %}
+
+                                <tr>
+
+                                    <td>
+                                        {{ record["subject"] }}
+                                    </td>
+
+                                    <td class="score">
+                                        {{ record["marks_obtained"] }}
+                                    </td>
+
+                                    <td>
+                                        {{ record["max_marks"] }}
+                                    </td>
+
+                                    <td>
+                                        {{ record["percentage"] }}%
+                                    </td>
+
+                                    <td>
+
+                                        <span class="grade">
+                                            {{ record["grade"] }}
+                                        </span>
+
+                                    </td>
+
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                {% else %}
+
+                    <div class="no-records">
+                        No marks records available yet.
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>
